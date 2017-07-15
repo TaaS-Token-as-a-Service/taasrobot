@@ -56,10 +56,10 @@ do
     local text
 
     if db:hexists(kmod, user_id) then
-      text = user .. _msg('is already a moderator.')
+      text = user .. _msg('is already part of the Community Support Group.')
     else
       db:hset(kmod, user_id, arg.name)
-      text = user .. _msg('is now a moderator.')
+      text = user .. _msg('was added to the Community Support Group.')
     end
     sendText(arg.chat_id, arg.msg_id, text)
   end
@@ -72,9 +72,9 @@ do
 
     if db:hexists(kmod, user_id) then
       db:hdel(kmod, user_id)
-      text = user .. _msg('is no longer a moderator.')
+      text = user .. _msg('is no longer part of the Community Support Group.')
     else
-      text = user .. _msg('is not a moderator.')
+      text = user .. _msg('is not part of the Community Support Group.')
     end
     sendText(arg.chat_id, arg.msg_id, text)
   end
@@ -379,7 +379,7 @@ do
     end
 
     -- Returns a list of moderators for the group.
-    if matches[1]:match('^modlist$') then
+    if matches[1]:match('^supportgroup$') then
       local modlist = modList(chat_id)
       sendText(chat_id, msg.id_, modlist)
     end
@@ -1041,7 +1041,7 @@ do
       _config.cmd .. '(demod)$',
       _config.cmd .. '(demod) (@)(.+)$',
       _config.cmd .. '(demod) (%d+)$',
-      _config.cmd .. '(modlist)$',
+      _config.cmd .. '(supportgroup)$',
       _config.cmd .. '(modlist clear)$',
       _config.cmd .. '(lock) (%w+)$',
       _config.cmd .. '(unlock) (%w+)$',
