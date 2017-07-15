@@ -163,7 +163,12 @@ local function loadConfig()
         },
         usr = {
           'reddit',
-          'rss'
+          'rss',
+          'patterns',
+          'id',
+          'github',
+          'btc',
+          'wikipedia'
         },
       },
       sudoers = {},
